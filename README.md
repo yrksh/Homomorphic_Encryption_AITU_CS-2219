@@ -1,37 +1,45 @@
 # Homomorphic Encryption Tool with AES Key Management
 
 ## Overview
-The **Homomorphic Encryption Tool with AES Key Management** is a secure data processing solution designed to enable computations on encrypted data while preserving privacy. This tool integrates advanced **homomorphic encryption** (specifically the **CKKS scheme**) and **AES encryption** to protect both sensitive data and cryptographic keys. With this tool, you can securely perform operations on encrypted data without exposing it, ensuring that confidentiality and data privacy are maintained at all times.
+
+The Homomorphic Encryption Tool with AES Key Management is a secure data processing solution designed to enable computations on encrypted data while preserving privacy. This tool combines advanced homomorphic encryption (using the CKKS scheme from TenSEAL) and AES-256 encryption to protect both sensitive input data and cryptographic keys.
+
+It offers a modular and user-friendly platform suitable for academic research, secure computing demonstrations, and integration into larger systems.
 
 ## Features
-- **Homomorphic Encryption (CKKS)**: Perform computations directly on encrypted data without needing to decrypt it, ensuring data privacy and security during processing.
-- **AES Encryption for Key Management**: Protect cryptographic keys used in homomorphic encryption with **AES encryption**, ensuring secure key storage and management.
-- **User-friendly Graphical Interface**: A simple Tkinter-based GUI for easy interaction with encryption, decryption, and data processing functions.
-- **Data Privacy Protection**: Keep sensitive data secure by ensuring that it is never exposed during calculations or while stored.
-  
+
+- **Homomorphic Encryption (CKKS):** Perform secure arithmetic operations (such as addition and multiplication) directly on encrypted floating-point vectors without the need for decryption.
+- **AES-256 Encryption for Key Management:** Protect TenSEAL context data (including secret and Galois keys) using AES-256 encryption in EAX mode to ensure secure key storage and transfer.
+- **Graphical User Interface (Tkinter):** A clean and intuitive interface for entering data, encrypting it, and securely saving the result.
+- **Modular Encryption Logic:** Separated encryption and decryption logic that can be integrated into other projects or systems for secure data processing.
+- **Secure Key Handling:** AES-encrypted TenSEAL context enables secure reuse and portability of encrypted computation environments.
+
+## Repository Structure
+
+| File             | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `Homo_main.py`   | Main GUI application for homomorphic encryption (CKKS only).                |
+| `HOMO_AES.py`    | Extended GUI version with AES-256 encryption for secure key management.     |
+| `encryption.py`  | Contains reusable logic for encrypting data using CKKS.                     |
+| `decryption.py`  | Decryption logic for secure environments; not required in most use cases.   |
+| `README.md`      | Project documentation.                                                      |
+| `LICENSE`        | MIT License file.                                                           |
+
 ## How It Works
-This tool leverages two powerful encryption mechanisms:
-- **Homomorphic Encryption (CKKS)**: Allows for secure computations on encrypted data. You can perform necessary calculations on encrypted information without decrypting it, ensuring that no sensitive data is exposed during processing.
-- **AES Encryption**: AES is used for encrypting the cryptographic keys that are needed to perform homomorphic encryption. These keys are securely stored and protected with AES, preventing unauthorized access.
+
+### Homomorphic Encryption (CKKS)
+
+The CKKS scheme allows arithmetic operations on encrypted vectors of real numbers. This enables secure processing of sensitive data without ever decrypting it. The encryption context includes a public key for encryption, secret key for decryption, and Galois keys for operations like rotation.
+
+### AES Key Management
+
+To protect the encryption context and keys, AES-256 is used to encrypt the serialized TenSEAL context. The AES key is generated using `Crypto.Random` and used in EAX mode to ensure both confidentiality and integrity. This allows safe storage and transfer of keys while maintaining strong security guarantees.
 
 ## Installation
 
-To use the **Homomorphic Encryption Tool with AES Key Management**, you must have Python installed. Follow these steps to get the tool up and running:
+Make sure you have Python 3.8 or newer installed.
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/homomorphic-encryption-tool.git
-    cd homomorphic-encryption-tool
-    ```
-
-2. Install the required dependencies using **pip**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Usage
-
-To run the tool, simply execute the following command in your terminal:
-
 ```bash
-python main.py
+git clone https://github.com/YOUR_USERNAME/homomorphic-encryption-tool.git
+cd homomorphic-encryption-tool
